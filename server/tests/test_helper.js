@@ -1,7 +1,7 @@
 const Blog = require('../models/blog')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-
+const utils = require('../utils/config')
 
 const initialBlogs = (user) => {
   return [
@@ -84,7 +84,7 @@ const tokenForInitialUser = async () => {
   }
   const token = jwt.sign(
     userForToken,
-    process.env.SECRET,
+    utils.SECRET,
     { expiresIn: 60 * 5 }
   )
   return token
