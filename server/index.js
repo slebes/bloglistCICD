@@ -12,7 +12,6 @@ const middleware = require('./utils/middleware')
 
 
 const mongoUrl = config.MONGODB_URI
-console.log(mongoUrl)
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
 
@@ -27,7 +26,7 @@ app.get('/version', (req, res) => {
 })
 
 
-if(process.env.NODE_ENV === 'test'|| process.env.NODE_ENV === 'prodtesting') {
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'prodtesting' || process.env.NODE_ENV === 'pipelinetest') {
   const testingRouter = require('./controllers/testing')
   app.use('/testing', testingRouter)
 }

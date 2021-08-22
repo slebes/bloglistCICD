@@ -11,6 +11,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "start:test": "cross-env NODE_ENV=test node index.js",
     "start:prod-test": "cross-env NODE_ENV=prodtesting node index.js",
+    "start:pipeline-test": "cross-env NODE_ENV=pipelinetest node index.js",
     "build": "webpack --mode=production",
     "test-back": "cross-env NODE_ENV=test jest --verbose --runInBand -- /server",
     "test-front": "cross-env NODE_ENV=test jest --verbose --runInBand -- /client/components/Blog.test.jsx",
