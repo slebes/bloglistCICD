@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const loginRouter = require('express').Router()
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const utils = require('../utils/config')
 require('regenerator-runtime/runtime')
 
 loginRouter.post('/', async (request, response) => {
@@ -24,7 +25,7 @@ loginRouter.post('/', async (request, response) => {
   }
   const token = jwt.sign(
     userForToken,
-    process.env.SECRET,
+    utils.SECRET,
     { expiresIn: 60 * 120 }
   )
 

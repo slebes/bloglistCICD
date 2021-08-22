@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const utils = require('./config')
 
 const tokenExtractor = (request, response, next) => {
   const authorization = request.get('authorization')
@@ -14,7 +15,7 @@ const tokenExtractor = (request, response, next) => {
 const userExtractor = (request, response, next) => {
   if (!request.token) return response.status(401).json({ error: 'Token missing.' })
   try {
-    const user = jwt.verify(request.token, process.env.SECRET)
+    const user = jwt.verify(request.token, utils.SECRET)
     request.user = user
     next()
   } catch (err) {
