@@ -17,11 +17,9 @@ const mongouri = () => {
 
 const MONGODB_URI = mongouri()
 
-console.log('MONGODB_URI', MONGODB_URI)
 
 const SECRET = process.env.SECRET ? process.env.SECRET : process.argv[i-1]
 
-console.log('SECRET', SECRET)
 
 module.exports = {
   SECRET,
