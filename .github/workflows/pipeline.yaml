@@ -3,7 +3,7 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -36,9 +36,9 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "fullstack-pokedex-app"
+          heroku_app_name: "my-bloglist-cicd"
           heroku_email: "leevi.parkkinen@aalto.fi"
-          healthcheck: "https://fullstack-pokedex-app.herokuapp.com/health"
+          healthcheck: "https://my-bloglist-cicd.herokuapp.com/api/health"
           rollbackonhealthcheckfailed: true
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI}}

@@ -24,7 +24,9 @@ app.use('/users', usersRouter)
 app.get('/version', (req, res) => {
   res.send('1')
 })
-
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
 
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'prodtesting' || process.env.NODE_ENV === 'pipelinetest') {
   const testingRouter = require('./controllers/testing')
