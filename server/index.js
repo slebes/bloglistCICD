@@ -27,7 +27,6 @@ app.get('/version', (req, res) => {
 
 
 if(process.env.NODE_ENV === 'test'|| process.env.NODE_ENV === 'prodtesting') {
-  console.log('test')
   const testingRouter = require('./controllers/testing')
   app.use('/testing', testingRouter)
 }

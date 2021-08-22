@@ -10,7 +10,6 @@ require('regenerator-runtime/runtime')
 
 const { PORT, inProduction } = require('@utils/config')
 
-console.log(PORT)
 
 const app = express()
 
@@ -31,7 +30,7 @@ watcher.on('ready', () => {
 /**
  * For frontend use hot loading when in development, else serve the static content
  */
-console.log('PRODUCTION',inProduction)
+
 
 if (!inProduction) {
   /* eslint-disable */
