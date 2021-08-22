@@ -40,9 +40,6 @@ jobs:
           heroku_email: "leevi.parkkinen@aalto.fi"
           healthcheck: "https://my-bloglist-cicd.herokuapp.com/api/health"
           rollbackonhealthcheckfailed: true
-        env:
-          MONGODB_URI: '${{ secrets.MONGODB_URI}}'
-          SECRET: '${{ secrets.TOKEN_SECRET}}'
 
       - uses: actions/checkout@v2
       - name: Bump version and push tag
@@ -61,7 +58,7 @@ jobs:
             {
               attachments: [{
                 color: 'good',
-                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT})\ndeployed a new version to https://fullstack-pokedex-app.herokuapp.com/ by ${process.env.AS_AUTHOR} in ${process.env.AS_TOOK}`,
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT})\ndeployed a new version to https://my-bloglist-cicd.herokuapp.com/ by ${process.env.AS_AUTHOR} in ${process.env.AS_TOOK}`,
               }]
             }
         env:
