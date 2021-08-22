@@ -24,7 +24,10 @@ app.use('/users', usersRouter)
 app.get('/version', (req, res) => {
   res.send('1')
 })
-if(process.env.NODE_ENV === ('test' || 'prod-testing')) {
+
+
+if(process.env.NODE_ENV === 'test'|| process.env.NODE_ENV === 'prodtesting') {
+  console.log('test')
   const testingRouter = require('./controllers/testing')
   app.use('/testing', testingRouter)
 }

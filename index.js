@@ -10,6 +10,8 @@ require('regenerator-runtime/runtime')
 
 const { PORT, inProduction } = require('@utils/config')
 
+console.log(PORT)
+
 const app = express()
 
 // Require is here so we can delete it from cache when files change (*)
@@ -29,6 +31,8 @@ watcher.on('ready', () => {
 /**
  * For frontend use hot loading when in development, else serve the static content
  */
+console.log('PRODUCTION',inProduction)
+
 if (!inProduction) {
   /* eslint-disable */
   const webpack = require('webpack')
