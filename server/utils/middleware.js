@@ -18,7 +18,6 @@ const userExtractor = (request, response, next) => {
     request.user = user
     next()
   } catch (err) {
-    console.log(err)
     return response.status(401).json({ error: 'Token invalid.' })
   }
 }

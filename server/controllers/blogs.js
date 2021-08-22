@@ -23,7 +23,6 @@ blogRouter.post('/', userExtractor, async (request, response) => {
   if (!body.title || !body.url) return response.status(400).json({ error: 'Title or url missing.' }).end()
   const token = request.token
   const user = request.user
-  console.log(token)
   if (!token || !user.id) {
     return response.status(401).json({ error: 'Token missing or invalid.' })
   }

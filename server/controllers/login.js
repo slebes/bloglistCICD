@@ -6,7 +6,6 @@ require('regenerator-runtime/runtime')
 
 loginRouter.post('/', async (request, response) => {
   const body = request.body
-  console.log(body)
   const user = await User.findOne({ username: body.username })
   const correctPassword =
     user === null

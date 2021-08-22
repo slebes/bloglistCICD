@@ -37,7 +37,6 @@ const App = () => {
       setBlogs(blogs)
     )
   }, [])
-  console.log('blogs', blogs)
 
   // useEffect for logging
   useEffect(() => {
@@ -51,16 +50,13 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    console.log('halo')
     try {
-      console.log('halo2')
       const user = await loginService.login({
         username, password
       })
       window.localStorage.setItem(
         'loggedBlogUser', JSON.stringify(user)
       )
-      console.log(user)
       setUser(user)
       blogService.setToken(user.token)
       setUsername('')
@@ -125,7 +121,6 @@ const App = () => {
       }, 5000)
     } catch (createError) {
       setError(`${createError.message}: ${createError.response.statusText}. ${createError.response.data.error}`)
-      console.log(createError.response)
       if (createError.response.status === 401) handleLogout()
       setTimeout(() => {
         setError(null)
@@ -155,7 +150,6 @@ const App = () => {
 
   const handleLike = async (likedBlog) => {
     const updatedBlog = { ...likedBlog, likes: likedBlog.likes + 1 }
-    console.log(updatedBlog)
     await blogService.like(updatedBlog)
     setBlogs(blogs.map(blog => blog.id === likedBlog.id ? updatedBlog : blog))
   }

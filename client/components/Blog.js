@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const Blog = ({ blog, handleLike, remove, user }) => {
-  console.log(blog)
 
   const [view, setView] = useState(false)
 

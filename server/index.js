@@ -24,7 +24,7 @@ app.use('/users', usersRouter)
 app.get('/ping', (req, res) => {
   res.send('pong')
 })
-if(process.env.NODE_ENV === 'test') {
+if(process.env.NODE_ENV === ('test' || 'prod-testing')) {
   const testingRouter = require('./controllers/testing')
   app.use('/testing', testingRouter)
 }

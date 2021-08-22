@@ -26,7 +26,6 @@ watcher.on('ready', () => {
     })
   })
 })
-console.log('sdf')
 /**
  * For frontend use hot loading when in development, else serve the static content
  */
@@ -62,5 +61,5 @@ if (!inProduction) {
 }
 
 app.listen(PORT, () => {
-  console.log(`Started on port ${PORT}`)
+  console.log(`Started on port ${PORT}`) // eslint-disable-line
 })
