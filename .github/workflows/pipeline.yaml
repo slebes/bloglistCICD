@@ -21,7 +21,7 @@ jobs:
       - name: build
         run: npm run build
       - name: test back
-        run: npm run test-back-pipeline ${{ secrets.TEST_MONGODB_URI }} ${{ secrets.TOKEN_SECRET }}
+        run: npm run test-back-pipeline ${{ secrets.TEST_MONGODB_URI }} sdf
 
       - name: e2e tests
         uses: cypress-io/github-action@v2
