@@ -21,7 +21,7 @@ jobs:
       - name: build
         run: npm run build
       - name: test back
-        run: npm run test-back-pipeline ${{ secrets.TEST_MONGODB_URI }} sdf
+        run: npm run test-back-pipeline ${{ secrets.TEST_MONGODB_URI }} ${{ secrets.TOKEN_SECRET }}
 
       - name: e2e tests
         uses: cypress-io/github-action@v2
@@ -29,6 +29,20 @@ jobs:
           command: npm run test:e2e
           start: npm run start:pipeline-test ${{ secrets.TEST_MONGODB_URI }} ${{ secrets.TOKEN_SECRET }}
           wait-on: http://localhost:3003
+
+      - name: deploy to heroku
+        id: deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        if: ${{ github.event_name == 'push' }}
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "fullstack-pokedex-app"
+          heroku_email: "leevi.parkkinen@aalto.fi"
+          healthcheck: "https://fullstack-pokedex-app.herokuapp.com/health"
+          rollbackonhealthcheckfailed: true
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI}}
+          SECRET: ${{ secrets.TOKEN_SECRET}}
 
       - uses: actions/checkout@v2
       - name: Bump version and push tag
