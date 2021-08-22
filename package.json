@@ -14,7 +14,7 @@
     "build": "webpack --mode=production",
     "test-back": "cross-env NODE_ENV=test jest --verbose --runInBand -- /server",
     "test-front": "cross-env NODE_ENV=test jest --verbose --runInBand -- /client/components/Blog.test.jsx",
-    "test:e2e": "cypress open",
+    "test:e2e": "cypress run --spec cypress/integration/blog_app.spec.js",
     "eslint": "eslint ."
   },
   "author": "",
