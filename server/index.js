@@ -21,8 +21,8 @@ app.use(middleware.tokenExtractor)
 app.use('/login', loginRouter)
 app.use('/blogs', blogsRouter)
 app.use('/users', usersRouter)
-app.get('/ping', (req, res) => {
-  res.send('pong')
+app.get('/version', (req, res) => {
+  res.send('1')
 })
 if(process.env.NODE_ENV === ('test' || 'prod-testing')) {
   const testingRouter = require('./controllers/testing')
