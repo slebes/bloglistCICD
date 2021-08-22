@@ -1,0 +1,24 @@
+name: Health Check
+
+on:
+  schedule:
+    - cron:  '30 5 * * *'
+  workflow_dispatch: 
+
+jobs:
+  health_check:
+    runs-on: ubuntu-18.04
+    steps: 
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v1.5
+        with:
+          # Check the following URLs one by one sequentially
+          url: https://my-bloglist-cicd.herokuapp.com/api/health
+          # Follow redirects, or just report success on 3xx status codes
+          follow-redirect: no # Optional, defaults to "no"
+          # Fail this action after this many failed attempts
+          max-attempts: 3 # Optional, defaults to 1
+          # Delay between retries
+          retry-delay: 5s # Optional, only applicable to max-attempts > 1
+          # Retry all errors, including 404
+          retry-all: no # Optional, defaults to "no"

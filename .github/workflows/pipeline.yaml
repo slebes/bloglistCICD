@@ -41,8 +41,8 @@ jobs:
           healthcheck: "https://my-bloglist-cicd.herokuapp.com/api/health"
           rollbackonhealthcheckfailed: true
         env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI}}
-          SECRET: ${{ secrets.TOKEN_SECRET}}
+          MONGODB_URI: '${{ secrets.MONGODB_URI}}'
+          SECRET: '${{ secrets.TOKEN_SECRET}}'
 
       - uses: actions/checkout@v2
       - name: Bump version and push tag
@@ -51,3 +51,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+
+      - name: slack notification on succesful deploy 
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          fields: workflow,job,commit,author,took
+          custom_payload: |
+            {
+              attachments: [{
+                color: 'good',
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT})\ndeployed a new version to https://fullstack-pokedex-app.herokuapp.com/ by ${process.env.AS_AUTHOR} in ${process.env.AS_TOOK}`,
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ steps.deploy.outcome == 'success' }}
+
+      - name: slack notification on failure 
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: failure()
