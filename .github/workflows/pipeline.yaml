@@ -27,7 +27,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start:prod-test ${{ secrets.TEST_MONGODB_URI }}
+          start: npm run start:pipeline-test ${{ secrets.TEST_MONGODB_URI }}
           wait-on: http://localhost:3003
 
       - uses: actions/checkout@v2
