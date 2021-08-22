@@ -25,4 +25,6 @@ yarn-error.log*
 
 .env
 
+secret
+
 git-push.sh
