@@ -22,7 +22,7 @@ app.use('/login', loginRouter)
 app.use('/blogs', blogsRouter)
 app.use('/users', usersRouter)
 app.get('/version', (req, res) => {
-  res.send('2')
+  res.send('3')
 })
 app.get('/health', (req, res) => {
   res.send('ok')
